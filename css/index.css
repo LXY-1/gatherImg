@@ -1,14 +1,19 @@
- /**
+/* * 方案一、使用before与after创建两个伪元素实现遮住图片的四周，达到图片动态向中心收缩效果：此时是正常的盒子模型content-box */
+
+/**
   * * 需要明确一点：before、after创建的元素虽然是css创建的但是也是根dom节点元素类似的，可以设置相关的css属性来实现一些效果
   * * 注意的是给before与after添加hover伪元素的时候是这样写的：.container:hover::before  .container:hover::after
   */
 
-   /* 关键是使用：父元素的伪子元素before、after的边框来实现遮住父元素的部分四周，由于before这种左上部分、after遮住右下部分 */
+ 
+   /**关键是使用：父元素的伪子元素before、after的边框来实现遮住父元素的部分四周，由于before这种左上部分、after遮住右下部分 */
    .container{
     width: 450px;
     height: 300px;
     margin: 40px auto;
     position: relative;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .container img {
@@ -28,9 +33,12 @@
     position: absolute;
     left: 0;
     top: 0;
+    -webkit-transition: all 0.7s ease-in;
     transition: all 0.7s ease-in;
     z-index: 1;
 }
+
+/* /* 注意对after进行改进：由于是通过移动after来实现border遮住图片的右下部分的：此时after的左上已经移到父元素的外面了，可能会造成遮住其他的元素：所以把after的左上边框设置背景颜色是透明或者是直接不要设置左上边框的width，只设置右下边框 */
 .gather::after {
     content: '';
     width: 100%;
@@ -39,17 +47,19 @@
     position: absolute;
     left: 0;
     top: 0;
+    -webkit-transition: all 0.7s ease-in;
     transition: all 0.7s ease-in;
     z-index: 1;
 }
 
 .gather:hover::before {
     border-width: 20px;
-
 }
 .gather:hover::after {
     border-width: 20px;
     top: -40px;
     left:-40px;
+    border-left-color: transparent;
+    border-top-color: transparent;
 
 }
