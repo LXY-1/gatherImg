@@ -18,4 +18,4 @@
 - 关于before与after的相关语法知识
 [link](https://segmentfault.com/a/1190000003710082)
 - 关于box-sizing属性
-[link]()
+[link](http://note.youdao.com/noteshare?id=e6c263314bfd7204ca4f60b1fb92fa8c&sub=3B0162C439674112B02F2B8B5D9177D6)
